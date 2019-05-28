@@ -20,32 +20,22 @@
                         <% if (user) { %>
                         <a href="/logout">Log Out</a>
                     <li><a href="/bars/new">Add a Bar</a></li>
-                        <% } else { %>
-                        <a href="/auth/google">Login with Google</a>
-                        <% } %>
+                    <% } else { %>
+                    <a href="/auth/google">Login with Google</a>
+                    <% } %>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1 class="center-align">Find A Bar</h1>
-        <div class="row">
-            <div class="col s12 m6">
-                <% bars.forEach(function(bar) { %>
-                    <div class="card blue-grey">
-                        <div class="card-content white-text">
-                            <div>
-                                <span class="card-title">
-                                    <a href="/bars/<%= bar._id %>"><%= bar.name %></a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-       <% }) %>
-    </div>
+    <section id="show-page">
+        <div>Bar Name: </div>
+        <div><%= bar.name %></div>
+        <div>Location: </div>
+        <div><%= bar.location %></div>
+        <div>Description: </div>
+        <div><%= bar.description %></div>
+    </section>
 </body>
 
 </html>

@@ -35,7 +35,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', barsRouter);
+app.use('/bars', barsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
