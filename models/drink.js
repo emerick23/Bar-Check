@@ -6,10 +6,12 @@ var drinkSchema = new Schema({
         type: String,
         unique: true,
         required: true,
+        default: 'Water'
     },
     ingredients: {
         type: String,
-        required: true
+        required: true,
+        default: 'H20'
     },
     description: {
         type: String,

@@ -1,5 +1,6 @@
 var Drink = require('../models/drink');
 var Bar = require('../models/bar');
+var User = require('../models/user');
 
 module.exports = {
     new: newDrink,

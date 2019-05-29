@@ -35,11 +35,10 @@
         <div><%= bar.location %></div>
         <div>Description: </div>
         <div><%= bar.description %></div>
-        <div>Posted By</div>
         <div><%= bar.poster %></div>
         <div>Drinks:</div>
     </section>
-
+    <% if (user) { %>
     <form action="/bars/<%= bar._id %>/drinks" method="POST">
        <% drinks.map(function(drink) { %>
         <label>
@@ -49,22 +48,26 @@
         <% }) %>
         <button value="Validate" type="submit">Add Drink to Bar</button>
     </form>
+    <% } %>
     <section>
         <% bar.drinks.forEach(function(drink, num) { %>
         <li><%= drink.name %></li>
         <li><%= drink.ingredients %></li>
         <li><%= drink.description %></li>
+        <% if (user) { %>
         <form action="/bars/<%= bar._id %>/drinks/<%= num %>?_method=DELETE" method="POST">
             <button type="submit" >Delete Drink</button>
         </form>
+        <% } %>
         <% }) %>
     </section>
+    <% if (user) { %>
     <a href="/drinks/new">Add drink</a>
     <a href="/bars/<%= bar._id %>/edit">Edit Bar</a>
-    </form>
     <form action="/bars/<%= bar._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete Bar</button>
     </form>
+    <% } %>
 </body>
 
 </html>
