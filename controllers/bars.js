@@ -7,11 +7,28 @@ module.exports = {
     new: newBar,
     create,
     show,
+    edit,
+    updateBar,
 };
+
+function updateBar(req, res) {
+    Bar.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, bar) {
+        bar.save(function(err) {
+            if (err) return res.redirect('/bars');
+            res.redirect('/bars')
+        })
+    })
+}
+
+function edit(req, res) {
+    Bar.findById(req.params.id, function(err, bar) {
+        res.render('bars/edit', {bar, user: req.user})
+    })
+}
 
 function show(req, res) {
     Bar.findById(req.params.id, function(err, bar) {
-        res.render('bars/show', {bar, user})
+        res.render('bars/show', {bar, user: req.user})
     })
 }
 
@@ -24,12 +41,12 @@ function create(req, res) {
 }
 
 function newBar(req, res) {
-    res.render('bars/new', {user})
+    res.render('bars/new', {user: req.user})
 }
 
 function index(req, res) {
     Bar.find({}, function(err, bars) {
-        res.render('bars/index', {bars, user});
+        res.render('bars/index', {bars, user: req.user, name: req.query.name});
     });
 }
 

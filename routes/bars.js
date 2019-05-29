@@ -6,6 +6,12 @@ var barsCtrl = require('../controllers/bars');
 router.get('/', barsCtrl.index);
 router.get('/new', barsCtrl.new);
 router.get('/:id', barsCtrl.show);
-router.post('/', barsCtrl.create);
+router.post('/', isLoggedIn, barsCtrl.create);
+router.get('/:id/edit', barsCtrl.edit);
+router.put('/:id', barsCtrl.updateBar);
 
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+}
 module.exports = router;
