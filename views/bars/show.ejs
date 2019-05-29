@@ -48,9 +48,12 @@
     </section>
 
     <form action="/bars/<%= bar._id %>/drinks" method="POST">
-        <select name="drinkId">
-            <%- drinks.map(d => `<option value="${d._id}">${d.name}</option>`).join('') %>
-        </select>
+       <% drinks.map(function(drink) { %>
+        <label>
+            <input name="drinkId" type="checkbox" value="<%= drink._id %>"/>
+            <span><%= drink.name %></span>
+          </label>
+        <% }) %>
         <button type="submit">Add Drink to Bar</button>
     </form>
     <section>
