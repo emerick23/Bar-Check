@@ -37,8 +37,34 @@
         <div><%= bar.description %></div>
         <div>Posted By</div>
         <div><%= bar.poster %></div>
+        <div>Drinks:</div>
+        <ul>
+            <% bar.drinks.forEach(function(drink) { %>
+            <li><%= drink.name %></li>
+            <li><%= drink.ingredients %></li>
+            <li><%= drink.description %></li>`
+            <% }) %>
+        </ul>
     </section>
+
+    <form action="/bars/<%= bar._id %>/drinks" method="POST">
+        <select name="drinkId">
+            <%- drinks.map(d => `<option value="${d._id}">${d.name}</option>`).join('') %>
+        </select>
+        <button type="submit">Add Drink to Bar</button>
+    </form>
+    <section>
+        <% bar.drinks.forEach(function(drink) { %>
+        <li><%= drink.name %></li>
+        <li><%= drink.ingredients %></li>
+        <li><%= drink.description %></li>
+        <% }) %>
+    </section>
+    <a href="/drinks/new">Add drink</a>
     <a href="/bars/<%= bar._id %>/edit">Edit Bar</a>
+    </form>
+    <form action="/bars/<%= bar._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Bar</button>
     </form>
 </body>
 

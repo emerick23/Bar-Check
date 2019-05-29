@@ -16,10 +16,9 @@
             <div class="container">
                 <a href="/bars">Bar Check</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="space-between">
+                    <li class="right">
                         <% if (user) { %>
                         <a href="/logout">Log Out</a>
-                    <li class="space-between"><a href="/bars/new">Add a Bar</a></li>
                         <% } else { %>
                         <a href="/auth/google">Login with Google</a>
                         <% } %>
@@ -28,24 +27,30 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1 class="center-align">Find A Bar</h1>
-        <div class="row">
-            <div class="col s12 m6">
-                <% bars.forEach(function(bar) { %>
-                    <div class="card blue-grey">
-                        <div class="card-content white-text">
-                            <div>
-                                <span class="card-title">
-                                    <a href="/bars/<%= bar._id %>"><%= bar.name %></a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-       <% }) %>
-    </div>
+    <form id="new-form" action="/drinks" method="POST">
+        <label>Drink Name:</label>
+        <input type="text" name="name">
+        <label>Ingredients:</label>
+        <input type="text" name="ingredients">
+        <label>Description:</label>
+        <input type="text" name="description">
+        <!-- <select name="mpaaRating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select> -->
+        <!-- <label>Now Showing:</label>
+        <input type="checkbox" name="nowShowing" checked> -->
+        <input type="submit" value="Add Drink">
+    </form>
+    <section>
+        <% drinks.forEach(function(drink) { %>
+            <li><%= drink.name %></li>
+            <li><%= drink.ingredients %></li>
+            <li><%= drink.description %></li>
+        <% }) %>
+    </section>
 </body>
 
 </html>

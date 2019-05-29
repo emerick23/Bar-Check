@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Bar = require('../models/bar');
+const Drink = require('../models/drink');
 
 module.exports = {
     user,
@@ -9,7 +10,17 @@ module.exports = {
     show,
     edit,
     updateBar,
+    delete: deleteBar,
 };
+
+function deleteBar(req, res) {
+    Bar.findByIdAndDelete(req.params.id, req.body, function(err, bar) {
+        bar.save(function(err) {
+            if(err) return res.redirect('/bars');
+            res.redirect('/bars')
+        })
+    })
+}
 
 function updateBar(req, res) {
     Bar.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, bar) {
@@ -27,8 +38,14 @@ function edit(req, res) {
 }
 
 function show(req, res) {
-    Bar.findById(req.params.id, function(err, bar) {
-        res.render('bars/show', {bar, user: req.user})
+    Bar.findById(req.params.id)
+    .populate('drinks').exec(function(err, bar) {
+        Drink.find({_id: {$nin: bar.drinks}})
+        .exec(function(err, drinks) {
+            res.render('bars/show', {
+                bar, drinks, user: req.user
+            })
+        })
     })
 }
 

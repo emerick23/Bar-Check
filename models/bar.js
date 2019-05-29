@@ -5,7 +5,7 @@ var barSchema = new Schema({
     name: String,
     location: String,
     description: String,
-    poster: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    drinks: [{type: Schema.Types.ObjectId, ref:'Drink'}]
 });
 
 module.exports = mongoose.model('Bar', barSchema);
