@@ -10,6 +10,7 @@ router.post('/', isLoggedIn, barsCtrl.create);
 router.get('/:id/edit', barsCtrl.edit);
 router.put('/:id', barsCtrl.updateBar);
 router.delete('/:id', barsCtrl.delete);
+router.delete('/:id/drinks/:num', barsCtrl.del);
 
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) return next();

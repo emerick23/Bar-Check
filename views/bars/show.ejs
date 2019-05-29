@@ -38,13 +38,6 @@
         <div>Posted By</div>
         <div><%= bar.poster %></div>
         <div>Drinks:</div>
-        <ul>
-            <% bar.drinks.forEach(function(drink) { %>
-            <li><%= drink.name %></li>
-            <li><%= drink.ingredients %></li>
-            <li><%= drink.description %></li>`
-            <% }) %>
-        </ul>
     </section>
 
     <form action="/bars/<%= bar._id %>/drinks" method="POST">
@@ -54,13 +47,16 @@
             <span><%= drink.name %></span>
           </label>
         <% }) %>
-        <button type="submit">Add Drink to Bar</button>
+        <button value="Validate" type="submit">Add Drink to Bar</button>
     </form>
     <section>
-        <% bar.drinks.forEach(function(drink) { %>
+        <% bar.drinks.forEach(function(drink, num) { %>
         <li><%= drink.name %></li>
         <li><%= drink.ingredients %></li>
         <li><%= drink.description %></li>
+        <form action="/bars/<%= bar._id %>/drinks/<%= num %>?_method=DELETE" method="POST">
+            <button type="submit" >Delete Drink</button>
+        </form>
         <% }) %>
     </section>
     <a href="/drinks/new">Add drink</a>

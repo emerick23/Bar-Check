@@ -11,7 +11,17 @@ module.exports = {
     edit,
     updateBar,
     delete: deleteBar,
+    del
 };
+
+function del(req, res) {
+    Bar.findById(req.params.id, function(err, bar) {
+        bar.drinks.splice(req.params.num, 1);
+        bar.save(function(err) {
+            res.redirect(`/bars/${bar._id}`)
+        })
+    })
+}
 
 function deleteBar(req, res) {
     Bar.findByIdAndDelete(req.params.id, req.body, function(err, bar) {

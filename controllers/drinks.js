@@ -4,8 +4,18 @@ var Bar = require('../models/bar');
 module.exports = {
     new: newDrink,
     addToBar,
-    create
+    create,
+    delete: deleteDrink,
 };
+
+function deleteDrink(req, res) {
+    Drink.findByIdAndDelete(req.params.id, function(err, drink) {
+        drink.save(function(err) {
+            if(err) return res.redirect('/drinks/new');
+            res.redirect('/drinks/new')
+        })
+    })
+}
 
 function create(req, res) {
     var drink = new Drink(req.body);

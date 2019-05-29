@@ -34,14 +34,6 @@
         <input type="text" name="ingredients">
         <label>Description:</label>
         <input type="text" name="description">
-        <!-- <select name="mpaaRating">
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
-        </select> -->
-        <!-- <label>Now Showing:</label>
-        <input type="checkbox" name="nowShowing" checked> -->
         <input type="submit" value="Add Drink">
     </form>
     <section>
@@ -49,6 +41,9 @@
             <li><%= drink.name %></li>
             <li><%= drink.ingredients %></li>
             <li><%= drink.description %></li>
+            <form action="/drinks/<%= drink._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete Drink</button>
+            </form>
         <% }) %>
     </section>
 </body>
