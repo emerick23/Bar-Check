@@ -11,39 +11,40 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper black">
-            <div class="container">
-                <a href="/bars">Bar Check</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="right">
-                        <% if (user) { %>
-                        <a href="/logout">Log Out</a>
-                        <% } else { %>
-                        <a href="/auth/google">Login with Google</a>
-                        <% } %>
-                    </li>
-                </ul>
+    <header>
+        <nav>
+            <div class="nav-wrapper black">
+                <div class="container">
+                    <a href="/bars">Bar Check</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li class="right">
+                            <% if (user) { %>
+                            <a href="/logout">Log Out</a>
+                            <% } else { %>
+                            <a href="/auth/google">Login with Google</a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <form id="edit-form" action="/bars/<%= bar._id %>?_method=PUT" method="POST">
-        <label>Bar Name:</label>
-        <input type="text" name="name" value="<%= bar.name %>">
-        <label>Location:</label>
-        <input type="text" name="location" value="<%= bar.location %>">
-        <label>Description:</label>
-        <input type="text" name="description" value="<%= bar.description %>">
-        <!-- <select name="mpaaRating">
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
-        </select> -->
-        <!-- <label>Now Showing:</label>
-        <input type="checkbox" name="nowShowing" checked> -->
-        <input type="submit" value="Add Bar">
-    </form>
+        </nav>
+    </header>
+    <main>
+        <form id="edit-form" action="/bars/<%= bar._id %>?_method=PUT" method="POST">
+            <label>Bar Name:</label>
+            <input type="text" name="name" value="<%= bar.name %>">
+            <label>Location:</label>
+            <input type="text" name="location" value="<%= bar.location %>">
+            <label>Description:</label>
+            <input type="text" name="description" value="<%= bar.description %>">
+            <label>Index Image URL</label>
+            <input type="text" name="indexImg" value="<%= bar.indexImg %>">
+            <label>Details Image URL</label>
+            <input type="text" name="detailsImg" value="<%= bar.detailsImg %>">
+
+            <input type="submit" value="Add Bar">
+        </form>
+    </main>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ function deleteDrink(req, res) {
 function create(req, res) {
     var drink = new Drink(req.body);
     drink.save(function(err) {
-        if (err) return res.render('drinks/new');
+        if (err) return res.redirect('drinks/new');
         res.redirect('/drinks/new')
     })
 }
