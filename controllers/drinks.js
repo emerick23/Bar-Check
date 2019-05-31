@@ -28,11 +28,14 @@ function create(req, res) {
 
 function addToBar(req, res) {
     Bar.findById(req.params.id, function(err, bar) {
+        console.log(req.body)
+    if (isEmpty(req.body)) return res.redirect(`/bars/${bar._id}`);
         bar.drinks.push(req.body.drinkId);
         bar.save(function(err) {
             res.redirect(`/bars/${bar._id}`);
         })
     })
+   
 }
 
 function newDrink(req, res) {
@@ -42,4 +45,12 @@ function newDrink(req, res) {
             user: req.user
         })
     })
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
 }
