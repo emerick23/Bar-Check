@@ -73,12 +73,12 @@
                 <% }) %>
             </div>
             <div class="divider"></div>
+            <% if (user) { %>
             <div class="section white">
                 <div class="row">
                     <h4 class="text-align left">Add A Drink</h4>
                 </div>
                 <div class="row">
-                    <% if (user) { %>
                     <form action="/bars/<%= bar._id %>/drinks" method="POST">
                         <% drinks.map(function(drink) { %>
                         <div class="col s12 m2 center-align">
