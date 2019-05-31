@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Bar Check</title>
 </head>
@@ -32,17 +33,20 @@
     <main>
         <form id="edit-form" action="/bars/<%= bar._id %>?_method=PUT" method="POST">
             <label>Bar Name:</label>
-            <input type="text" name="name" value="<%= bar.name %>">
+            <input autocomplete="off" type="text" name="name" value="<%= bar.name %>">
             <label>Location:</label>
-            <input type="text" name="location" value="<%= bar.location %>">
+            <input autocomplete="off" type="text" name="location" value="<%= bar.location %>">
             <label>Description:</label>
-            <input type="text" name="description" value="<%= bar.description %>">
+            <input autocomplete="off" type="text" name="description" value="<%= bar.description %>">
             <label>Index Image URL</label>
-            <input type="text" name="indexImg" value="<%= bar.indexImg %>">
+            <input autocomplete="off" type="text" name="indexImg" value="<%= bar.indexImg %>">
             <label>Details Image URL</label>
-            <input type="text" name="detailsImg" value="<%= bar.detailsImg %>">
-
-            <input type="submit" value="Add Bar">
+            <input autocomplete="off" type="text" name="detailsImg" value="<%= bar.detailsImg %>">
+            <div class="section center">
+                <button class="waves-effect waves-light btn-small blue-grey lighten-3" type="submit">Update Bar
+                    <i class="material-icons right">edit</i>
+                </button>
+            </div>
         </form>
     </main>
 </body>

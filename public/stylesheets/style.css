@@ -1,5 +1,4 @@
 body {
-  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -10,11 +9,22 @@ a {
 .parallax-container {
   position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 400px;
 }
 
 .card.small {
   height: 175px;
 }
 
+.a.card.small.blue.lighten-3 {
+  height: 150px;
+}
+
+h6 {
+  line-height: 2;
+}
+
+.card-title {
+  font-style: italic;
+}
     

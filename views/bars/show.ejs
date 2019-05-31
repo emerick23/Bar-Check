@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -40,65 +41,90 @@
             </div>
         </div>
         <div class="section white">
-            <section>
-                <div>Bar Name: </div>
-                <div><%= bar.name %></div>
-                <div>Location: </div>
-                <div><%= bar.location %></div>
-                <div>Description: </div>
-                <div><%= bar.description %></div>
-                <div><%= bar.poster %></div>
-            </section>
+            <div class="row">
+                <h4 class="text-align left"><%= bar.name %></h4>
+                <h4 class="text-align right"><%= bar.location %></h4>
+            </div>
+            <div class="container">
+                <h6 class="text-align center"><%= bar.description %></h6>
+            </div>
         </div>
         <div class="divider"></div>
         <div class="section white">
-            <div class="container center-align">
-            <% if (user) { %>
-            <form action="/bars/<%= bar._id %>/drinks" method="POST">
-                <% drinks.map(function(drink) { %>
-                <label>
-                    <input name="drinkId" type="checkbox" value="<%= drink._id %>" />
-                    <span><%= drink.name %></span>
-                </label>
-                <% }) %>
-                <button type="submit">Add Drink to Bar</button>
-            </form>
-            <% } %>
-            <section>
+            <div class="row">
+                <h4 class="text-align left">Drinks</h4>
+            </div>
+            <div class="row">
                 <% bar.drinks.forEach(function(drink, num) { %>
-                <li><%= drink.name %></li>
-                <li><%= drink.ingredients %></li>
-                <li><%= drink.description %></li>
-                <% if (user) { %>
-                <form action="/bars/<%= bar._id %>/drinks/<%= num %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Drink</button>
-                </form>
-                <% } %>
+                <div class="col s12 m4 center">
+                    <div class="a card small blue lighten-3">
+                        <div class="card-content">
+                            <span class="card-title"><%= drink.name %></span>
+                            <p><%= drink.ingredients %></p>
+                            <% if (user) { %>
+                            <form action="/bars/<%= bar._id %>/drinks/<%= num %>?_method=DELETE" method="POST">
+                                <button class="btn-floating btn-small waves-effect waves-light red right"
+                                    type="submit"><i class="material-icons">remove</i></button>
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
                 <% }) %>
-            </section>
-        </div>
-        </div>
-        <div class="divider"></div>
-        <div class="section white">
-            <div class="container center-align">
-        <% if (user) { %>
-        <div class="left">
-        <a class="waves-effect waves-light btn-small blue lighten-3" href="/drinks/new">Create Drink</a>
-        </div>
-        <a class="waves-effect waves-light btn-small blue-grey lighten-3" href="/bars/<%= bar._id %>/edit">Edit Bar</a>
-        <div class="right">
-        <form action="/bars/<%= bar._id %>?_method=DELETE" method="POST">
-            <button class="waves-effect waves-light btn-small red lighten-3" type="submit">Delete Bar</button>
-        </form>
-    </div>
-        <% } %>
-        <script>
-            $(document).ready(function () {
-                $('.parallax').parallax();
-            });
-        </script>
-        </div>
-        </div>
+            </div>
+            <div class="divider"></div>
+            <div class="section white">
+                <div class="row">
+                    <h4 class="text-align left">Add A Drink</h4>
+                </div>
+                <div class="row">
+                    <% if (user) { %>
+                    <form action="/bars/<%= bar._id %>/drinks" method="POST">
+                        <% drinks.map(function(drink) { %>
+                        <div class="col s12 m2 center-align">
+                            <label>
+                                <input name="drinkId" type="checkbox" value="<%= drink._id %>" />
+                                <span><%= drink.name %></span>
+                            </label>
+                        </div>
+                        <% }) %>
+                    </div>
+                        <div class="container center">
+                        <button class="waves-effect waves-light btn-small green lighten-3" type="submit">Add Selected
+                                <i class="material-icons right">add_box</i>
+                        </button>
+                        </div>
+                    </form>
+                    <% } %>
+            </div>
+            <div class="divider"></div>
+            <div class="section white">
+                <div class="container center-align">
+                    <% if (user) { %>
+                    <div class="left">
+                        <a class="waves-effect waves-light btn-small blue lighten-3" href="/drinks/new">Create Drink
+                            <i class="material-icons right">local_bar</i></a>
+                    </div>
+                    <a class="waves-effect waves-light btn-small blue-grey lighten-3"
+                        href="/bars/<%= bar._id %>/edit">Edit
+                        Bar
+                        <i class="material-icons right">edit</i>
+                    </a>
+                    <div class="right">
+                        <form action="/bars/<%= bar._id %>?_method=DELETE" method="POST">
+                            <button class="waves-effect waves-light btn-small red lighten-3" type="submit">Delete Bar
+                                <i class="material-icons right">delete</i>
+                            </button>
+                        </form>
+                    </div>
+                    <% } %>
+                    <script>
+                        $(document).ready(function () {
+                            $('.parallax').parallax();
+                        });
+                    </script>
+                </div>
+            </div>
     </main>
 </body>
 

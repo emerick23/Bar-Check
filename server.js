@@ -36,9 +36,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/bars', express.static(path.join(__dirname,'public')));
-// app.use('/bars/:id', express.static(path.join(__dirname,'public')));
-// app.use('/bars', express.static(path.join(_dirname,'public')));
+
 
 app.use('/', indexRouter);
 app.use('/bars', barsRouter);
